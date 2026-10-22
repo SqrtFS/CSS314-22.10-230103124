@@ -1,0 +1,23 @@
+
+Student ID: 230103124
+OS: Mac OS X 14.8.9 (aarch64)
+CPU model: Apple M1
+Java: 21.0.11
+Logical cores: 8, physical cores: 8
+Worker threads (N): 8
+Increments per thread: 50000000
+Warm-up: 1 run of 5000000 increments, measured runs: 5 (median wall time is reported)
+
+Variant                        | Wall Time (ms) | Slowdown of Unpadded vs this variant
+-------------------------------+----------------+-------------------------------------
+Unpadded shared (8 B apart)    |        185.458 | 1.00x
+Padded 64 B (stride 8)         |        143.677 | 1.29x
+Padded 128 B (stride 16)       |        126.949 | 1.46x
+Local variable + 1 final write |         65.666 | 2.82x
+
+Execution ratio Unpadded / Padded 64 B  : 1.29x
+Execution ratio Unpadded / Padded 128 B : 1.46x
+Execution ratio Unpadded / Local        : 2.82x
+All counters verified: each equals 50000000
+
+Process finished with exit code 0
