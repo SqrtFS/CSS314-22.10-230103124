@@ -1,0 +1,28 @@
+
+Student ID: 230103124
+OS: Mac OS X 14.8.9 (aarch64)
+CPU model: Apple M1
+Java: 21.0.11
+Logical cores: 8
+Elements: 30,000,000 doubles (240 MB per array), runs per point: 5 (median, after 1 warm-up)
+
+=== Kernel A (memory-bound): B[i] = A[i] ===
+Cores | Wall Time (ms) | Speedup | Efficiency | Bandwidth (GB/s)
+------+----------------+---------+------------+-----------------
+    1 |          9.161 |   1.00x |     100.0% | 52.39
+    2 |          9.305 |   0.98x |      49.2% | 51.58
+    8 |         11.306 |   0.81x |      10.1% | 42.45
+
+=== Kernel B (compute-bound): B[i] = sin(A[i]) * cos(A[i]) + tan(A[i]) ===
+Cores | Wall Time (ms) | Speedup | Efficiency | Throughput (M elem/s)
+------+----------------+---------+------------+----------------------
+    1 |        455.829 |   1.00x |     100.0% | 65.81
+    2 |        234.663 |   1.94x |      97.1% | 127.84
+    8 |        114.822 |   3.97x |      49.6% | 261.27
+
+===== Verdict =====
+At 8 cores: Kernel A speedup 0.81x (efficiency 10.1%), Kernel B speedup 3.97x (efficiency 49.6%)
+Both kernels fell below 50% efficiency. Kernel A (vector copy) is the memory-bandwidth-bound one (about 42.5 GB/s reached); Kernel B is also limited, probably by core heterogeneity or CPU load.
+Extra speedup from 2 cores to 8 cores: Kernel A 0.82x, Kernel B 2.04x
+
+Process finished with exit code 0
