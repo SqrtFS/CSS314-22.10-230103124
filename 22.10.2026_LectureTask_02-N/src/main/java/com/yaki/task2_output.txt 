@@ -1,0 +1,20 @@
+Student ID: 230103124
+OS: Mac OS X 14.8.9 (aarch64)
+CPU model: Apple M1
+Java: 21.0.11
+Logical cores (availableProcessors): 8
+Array size: 20000000, seed: 230103124
+Warm-up runs: 3, measured runs: 7 (median wall time is reported)
+Reference serial sum: 9999614.584831
+
+Cores | Wall Time (ms) | Speedup | Amdahl Upper Bound | Sum
+------+----------------+---------+--------------------+----------------
+    1 |         19.227 |    1.00 |               1.00 | 9999614.584831
+    2 |          9.783 |    1.97 |               1.90 | 9999614.584829
+    4 |          5.164 |    3.72 |               3.48 | 9999614.584829
+    8 |          3.640 |    5.28 |               5.93 | 9999614.584829
+   16 |          4.366 |    4.40 |               9.14 | 9999614.584829
+
+Speedup S(p) = T(1) / T(p); Amdahl bound = 1 / ((1 - P) + P / p), P = 0.95
+
+Process finished with exit code 0
