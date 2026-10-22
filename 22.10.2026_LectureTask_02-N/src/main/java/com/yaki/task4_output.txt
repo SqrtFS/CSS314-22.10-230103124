@@ -1,0 +1,40 @@
+
+Student ID: 230103124
+OS: Mac OS X 14.8.9 (aarch64)
+CPU model: Apple M1
+Java: 21.0.11
+Logical cores: 8
+Items: 1000, workers: 4, cost simulation: busy-wait
+Measured runs per strategy: 5 (the run with the median total time is shown)
+
+=== Scenario 1: cost(i) = 0.0001 s * (i % 20)   [as specified] ===
+Total work: 950.0 ms, ideal time with 4 workers: 237.5 ms
+
+Strategy                    | Total (ms) | Finish delta (ms) | Efficiency
+----------------------------+------------+-------------------+-----------
+A: Static blocks (250 each) |    242.975 |            10.300 |     97.7%
+B: Dynamic, chunk = 1       |    238.351 |             1.493 |     99.6%
+B: Dynamic, chunk = 5       |    241.616 |             8.045 |     98.3%
+
+Per-thread finish time (ms) and items processed:
+A: Static blocks (250 each) :  T0=232.7 (250 items)  T1=242.7 (250 items)  T2=233.1 (250 items)  T3=243.0 (250 items)
+B: Dynamic, chunk = 1       :  T0=238.4 (249 items)  T1=236.9 (243 items)  T2=237.9 (257 items)  T3=237.5 (251 items)
+B: Dynamic, chunk = 5       :  T0=237.1 (235 items)  T1=241.6 (270 items)  T2=238.1 (240 items)  T3=233.6 (255 items)
+Static vs Dynamic(1): total time ratio 1.019x, finish delta 10.300 ms vs 1.493 ms
+
+=== Scenario 2: cost(i) = 0.0001 s * (i / 50)   [extra: same total work, sorted ascending] ===
+Total work: 950.0 ms, ideal time with 4 workers: 237.5 ms
+
+Strategy                    | Total (ms) | Finish delta (ms) | Efficiency
+----------------------------+------------+-------------------+-----------
+A: Static blocks (250 each) |    425.059 |           374.962 |     55.9%
+B: Dynamic, chunk = 1       |    238.079 |             0.935 |     99.8%
+B: Dynamic, chunk = 5       |    240.070 |             4.972 |     98.9%
+
+Per-thread finish time (ms) and items processed:
+A: Static blocks (250 each) :  T0=50.1 (250 items)  T1=175.1 (250 items)  T2=300.1 (250 items)  T3=425.1 (250 items)
+B: Dynamic, chunk = 1       :  T0=238.1 (238 items)  T1=237.2 (237 items)  T2=237.1 (237 items)  T3=238.1 (288 items)
+B: Dynamic, chunk = 5       :  T0=240.1 (240 items)  T1=235.1 (235 items)  T2=235.1 (235 items)  T3=240.1 (290 items)
+Static vs Dynamic(1): total time ratio 1.785x, finish delta 374.962 ms vs 0.935 ms
+
+Process finished with exit code 0
