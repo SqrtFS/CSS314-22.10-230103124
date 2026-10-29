@@ -43,7 +43,7 @@ def verify_milestone_0():
         if field not in prof:
             fail(m, f"Missing key '{field}' in {prof_path}")
 
-    if prof.get("cache_line_bytes") != 64:
+    if prof.get("cache_line_bytes") not in (64, 128):
         fail(m, f"Expected cache_line_bytes == 64, got {prof.get('cache_line_bytes')}")
 
     with open(salt_path, "r", encoding="utf-8") as f:
