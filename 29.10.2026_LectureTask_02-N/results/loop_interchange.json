@@ -1,0 +1,23 @@
+{
+  "student_id": "230103124",
+  "N": 1024,
+  "block_M": 512,
+  "backend": "numba",
+  "runs": 3,
+  "t_naive_ijk_ns_median": 137486833,
+  "t_interchanged_ikj_ns_median": 114171916,
+  "t_naive_ijk_ns_all": [
+    143724500,
+    137486833,
+    135842584
+  ],
+  "t_interchanged_ikj_ns_all": [
+    114807334,
+    114171916,
+    112438250
+  ],
+  "speedup_S": 1.204208861660866,
+  "max_abs_diff_ijk_vs_ikj": 0.0,
+  "max_abs_diff_vs_numpy_matmul": 8.526512829121202e-14,
+  "result_digest_6dp_sum": 33614436.106343
+}
