@@ -1,0 +1,31 @@
+{
+  "cpu": {
+    "model_name": "Apple M1",
+    "microarchitecture": "arm64",
+    "base_frequency_mhz": null,
+    "max_frequency_mhz": null,
+    "simd": []
+  },
+  "cores": {
+    "physical": 8,
+    "logical": 8,
+    "smt_enabled": false
+  },
+  "cache": {
+    "L1d_bytes": 131072,
+    "L2_bytes": 12582912,
+    "L3_bytes": null,
+    "line_size_bytes": 128
+  },
+  "os": {
+    "system": "Darwin",
+    "kernel": "23.6.0",
+    "version": "Darwin Kernel Version 23.6.0: Tue Jul 21 21:56:45 PDT 2026; root:xnu-10063.141.1.713.39~1/RELEASE_ARM64_T8103",
+    "machine": "arm64"
+  },
+  "python": {
+    "implementation": "CPython",
+    "version": "3.14.8",
+    "compiler": "Clang 15.0.0 (clang-1500.3.9.4)"
+  }
+}
