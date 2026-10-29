@@ -4,19 +4,22 @@
   "block_M": 512,
   "backend": "numba",
   "runs": 3,
-  "t_naive_ijk_ns_median": 137486833,
-  "t_interchanged_ikj_ns_median": 114171916,
+  "t_naive_ijk_ns_median": 137459833,
+  "t_interchanged_ikj_ns_median": 111374250,
   "t_naive_ijk_ns_all": [
-    143724500,
-    137486833,
-    135842584
+    163881875,
+    137459833,
+    137082709
   ],
   "t_interchanged_ikj_ns_all": [
-    114807334,
-    114171916,
-    112438250
+    111374250,
+    110628417,
+    111779625
   ],
-  "speedup_S": 1.204208861660866,
+  "speedup_S": 1.234215565985854,
+  "naive_time_s": 0.137459833,
+  "interchanged_time_s": 0.11137425,
+  "speedup": 1.234215565985854,
   "max_abs_diff_ijk_vs_ikj": 0.0,
   "max_abs_diff_vs_numpy_matmul": 8.526512829121202e-14,
   "result_digest_6dp_sum": 33614436.106343

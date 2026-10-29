@@ -1,0 +1,29 @@
+{
+  "kernel": "5-point Jacobi stencil, double precision, ping-pong buffers",
+  "N": 1024,
+  "steps": 20,
+  "flops_per_cell": 5,
+  "dram_bytes_per_cell_ideal": 16,
+  "dram_bytes_per_cell_with_write_allocate": 24,
+  "arithmetic_intensity": 0.3125,
+  "arithmetic_intensity_flop_per_byte_ideal": 0.3125,
+  "arithmetic_intensity_flop_per_byte_write_allocate": 0.20833333333333334,
+  "working_set_bytes": 16777216,
+  "smallest_cache_level_holding_working_set": null,
+  "cache_bytes": {
+    "L1d_bytes": 131072,
+    "L2_bytes": 12582912,
+    "L3_bytes": null,
+    "line_size_bytes": 128
+  },
+  "peak_gflops_estimate": 204.8,
+  "peak_flops_assumption": "3200.0 MHz x 16 DP FLOP/cycle/core x 4 fast cores",
+  "memory_bandwidth_gbps_used": 68.25,
+  "memory_bandwidth_measured_single_core_gbps": 42.956,
+  "memory_bandwidth_source": "vendor spec peak",
+  "ridge_point_flop_per_byte": 3.0007326007326007,
+  "roofline_attainable_gflops": 21.328125,
+  "regime": "memory-bandwidth bound",
+  "amdahl_serial_fraction": 0.921056476334079,
+  "amdahl_max_speedup": 1.085709753630012
+}

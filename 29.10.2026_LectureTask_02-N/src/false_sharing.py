@@ -69,6 +69,10 @@ def karp_flatt(t1, tp, P):
     return ((P * tp / t1) - 1.0) / (P - 1)
 
 
+def karp_flatt_scaled(t1, tp, P):
+    return (tp / t1 - 1.0) / (P - 1)
+
+
 def main():
     os.makedirs(RESULTS, exist_ok=True)
     print(f"cache line = {LINE} bytes, padding stride = {SLOTS} int64")
@@ -93,18 +97,35 @@ def main():
             print(f"{name:<11} P={P}  median {med / 1e9:7.3f} s  total {totals[0]} {'OK' if ok else 'MISMATCH'}")
 
     with open(os.path.join(RESULTS, "false_sharing_karp_flatt.tsv"), "w") as f:
-        f.write("variant\tP\tmedian_time_ns\trun1_ns\trun2_ns\trun3_ns\tspeedup\tefficiency\tkarp_flatt_e\ttotal_count\texpected_count\tcount_ok\n")
-        for r in rows:
-            name, P = r["variant"], r["P"]
-            t1 = medians[(name, 1)]
-            tp = r["median_ns"]
-            sp = t1 / tp
-            eff = sp / P
-            e = karp_flatt(t1, tp, P) if P > 1 else float("nan")
-            es = f"{e:.6f}" if P > 1 else "NA"
-            f.write(f"{name}\t{P}\t{tp}\t{r['runs_ns'][0]}\t{r['runs_ns'][1]}\t{r['runs_ns'][2]}\t{sp:.4f}\t{eff:.4f}\t{es}\t{r['total']}\t{r['expected']}\t{int(r['ok'])}\n")
-            if P > 1:
-                print(f"{name:<11} P={P}  S={sp:6.3f}  e={e:8.4f}")
+        names = [v[0] for v in variants]
+        cols = ["P"]
+        for n in names:
+            cols += [f"T_{n}_ns", f"runs_{n}_ns", f"S_{n}"]
+        for n in names:
+            cols.append(f"e_{n}")
+        for n in names:
+            cols.append(f"e_{n}_scaled")
+        cols += ["expected_count", "count_ok"]
+        f.write("\t".join(cols) + "\n")
+        for P in PROCS:
+            cells = [str(P)]
+            for n in names:
+                t1 = medians[(n, 1)]
+                tp = medians[(n, P)]
+                runs = next(r["runs_ns"] for r in rows if r["variant"] == n and r["P"] == P)
+                cells += [str(tp), ",".join(str(x) for x in runs), f"{t1 / tp:.4f}"]
+            for n in names:
+                cells.append(f"{karp_flatt(medians[(n, 1)], medians[(n, P)], P):.6f}" if P > 1 else "NA")
+            for n in names:
+                cells.append(f"{karp_flatt_scaled(medians[(n, 1)], medians[(n, P)], P):.6f}" if P > 1 else "NA")
+            ok = all(r["ok"] for r in rows if r["P"] == P)
+            cells += [str(P * K), str(int(ok))]
+            f.write("\t".join(cells) + "\n")
+    for P in PROCS[1:]:
+        for n in names:
+            t1 = medians[(n, 1)]
+            tp = medians[(n, P)]
+            print(f"{n:<11} P={P}  S={t1 / tp:6.3f}  e={karp_flatt(t1, tp, P):8.4f}  e_scaled={karp_flatt_scaled(t1, tp, P):7.4f}")
 
 
 if __name__ == "__main__":

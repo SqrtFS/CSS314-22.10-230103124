@@ -156,6 +156,10 @@ def main():
             "compiler": platform.python_compiler(),
         },
     }
+    profile["cpu_model"] = cpu.get("model_name")
+    profile["physical_cores"] = physical
+    profile["logical_threads"] = logical
+    profile["cache_line_bytes"] = line
     with open(os.path.join(RESULTS, "host_profile.json"), "w") as f:
         json.dump(profile, f, indent=2)
     with open(os.path.join(RESULTS, "salted_params.json"), "w") as f:

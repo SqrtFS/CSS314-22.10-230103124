@@ -34,7 +34,7 @@ def main():
         rows.append((s, touched, med, med / touched, touched * 8 / med))
     base = rows[0][3]
     with open(os.path.join(RESULTS, "stride_results.tsv"), "w") as f:
-        f.write("stride\telements_touched\tmedian_time_ns\tlatency_per_element_ns\tuseful_GBps\trelative_to_stride1\n")
+        f.write("stride\telements_touched\tmedian_time_ns\tlatency_ns\tuseful_GBps\trelative_to_stride1\n")
         for s, n, t, lat, bw in rows:
             f.write(f"{s}\t{n}\t{t}\t{lat:.4f}\t{bw:.3f}\t{lat / base:.2f}\n")
     for s, n, t, lat, bw in rows:

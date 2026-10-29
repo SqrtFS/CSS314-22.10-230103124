@@ -1,0 +1,10 @@
+mode	P	N	time_ns	speedup	efficiency_pct	scaled_speedup	weak_efficiency_pct	amdahl_s_point	checksum_ok
+strong	1	1024	64934125	1.0000	100.00	NA	NA	NA	1
+strong	2	1024	54283333	1.1962	59.81	NA	NA	0.671951	1
+strong	4	1024	98748250	0.6576	16.44	NA	NA	1.694327	1
+strong	8	1024	32791417	1.9802	24.75	NA	NA	0.434280	1
+weak	1	1024	63688917	NA	NA	1.0000	100.00	NA	1
+weak	2	1449	119801417	NA	NA	0.5310	26.55	NA	1
+weak	4	2048	235600833	NA	NA	0.2703	6.76	NA	1
+weak	8	2897	425953250	NA	NA	0.1494	1.87	NA	1
+amdahl_fit	-	1024	-	1.0857	-	-	-	0.921056	-
