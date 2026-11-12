@@ -1,0 +1,15 @@
+{
+    "timestamp_utc": "2026-11-05T06:46:10.641449+00:00",
+    "student_id": 230103124,
+    "os_platform": "macOS-14.8.9-arm64-arm-64bit-Mach-O",
+    "system": "Darwin",
+    "machine_architecture": "arm64",
+    "processor_microarchitecture": "Apple M1",
+    "physical_core_count": 8,
+    "logical_thread_count": 8,
+    "python_version": "3.14.8 (main, Sep 30 2026, 17:55:09) [Clang 15.0.0 (clang-1500.3.9.4)]",
+    "numpy_version": "2.5.4",
+    "base_array_elements_per_process_N0": 1760000,
+    "K1": 6,
+    "K2": 3
+}
